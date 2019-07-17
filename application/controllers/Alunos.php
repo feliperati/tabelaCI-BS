@@ -6,6 +6,9 @@ class Alunos extends CI_controller {
     
     function __construct() {
         parent::__construct();
+        if(!$this->session->userdata('estou_logado')){
+            redirect('Login');
+        }
         $this->load->model('Alunos_model', 'alunos'); // 'alunos' é um alias para 'Alunos_model'
     }
     
@@ -16,19 +19,33 @@ class Alunos extends CI_controller {
         $this->load->view('template/footer');
     }
     
-      public function inserir() {
+    public function inserir() {
         $dados['nome'] = mb_convert_case($this->input->post('nome'), MB_CASE_UPPER);
         $dados['rg'] = $this->input->post('rg');
         $dados['cpf'] = $this->input->post('cpf');
-        $dados['sexo'] = $this->input->post('sexo');
-        $this->alunos->inserir($dados);
+        $dados['sexo'] = mb_convert_case($this->input->post('sexo'),MB_CASE_UPPER);
+        $result = $this->alunos->inserir($dados);
         
-        redirect('alunos');
+        if($result==true) {
+            $this->session->set_flashdata('true', 'msg');
+            redirect('alunos');
+        }else {
+            $this->session->set_flashdata('err', 'msg'); 
+            redirect('alunos');
+        }      
     }
     
     public function excluir($id) {
-        $this->alunos->deletar($id);
-        redirect('alunos');
+        $result = $this->alunos->deletar($id);
+        
+         if($result==true) {
+            $this->session->set_flashdata('excluirSucesso', 'msg');
+            redirect('alunos');
+        }else {
+            $this->session->set_flashdata('err', 'msg'); 
+            redirect('alunos');
+        }      
+        
     }
     
     public function editar($id) {
@@ -39,12 +56,23 @@ class Alunos extends CI_controller {
     }
     
     public function atualizar () {
+        $dados['id'] = $this->input->post('id');
         $dados['nome'] = mb_convert_case($this->input->post('nome'), MB_CASE_UPPER);
         $dados['rg'] = $this->input->post('rg');
         $dados['cpf'] = $this->input->post('cpf');
+        $dados['sexo'] = mb_convert_case($this->input->post('sexo'),MB_CASE_UPPER);
         
-        $this->alunos->atualizar($dados);
-        redirect('alunos');
+        $result = $this->alunos->atualizar($dados);
+        
+        if($result==true) {
+            $this->session->set_flashdata('trueUpdate', 'msg');
+            redirect('alunos');
+        }else {
+            $this->session->set_flashdata('err', 'msg'); 
+            redirect('alunos');
+        }      
+        
+        
         
     }
 }
