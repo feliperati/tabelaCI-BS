@@ -1,5 +1,6 @@
 
-<div class="row">				
+<div id="div-lista" class="hide row">
+			
     <div class="col-3 col-lg-3 col-md-3"></div>
     <div class="col-6 col-lg-6 col-md-6">
         <h1 class="jumbotrom_heading">Cadastro de professores</h1><p></p>
@@ -28,6 +29,9 @@
         <input type = "reset" class="btn btn-danger"/>
 
         <a class="btn btn-primary" href="<?php base_url(); ?>home"id="cancelar">Cancelar</a>
+        
+        <a class="btn btn-info" id="btn-lista" href="<?php base_url(); ?>professorCadastro">Listar Contatos</a>
+        
         <?php form_close(); ?>	
         
         <table class="table table-striped">
@@ -60,3 +64,18 @@
     </div>
     <div class="col-3 col-lg-3 col-md-3"></div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable({
+            language: {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+            }
+        });
+    });
+    $("#btn-lista").click(function () {
+        $("#div-lista").toggleClass("hide");
+    });
+
+</script>
+
+
