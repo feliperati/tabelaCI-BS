@@ -19,7 +19,7 @@
         
         <!-- off line / local -->
         <link href="<?php echo base_url('DataTables/datatables.min.css') ?>"
-              rel="stylesheet" >
+            rel="stylesheet" >
         
         <!-- on line -->
         <script src="<?php echo base_url('DataTables/jquery.min.js') ?>"></script>

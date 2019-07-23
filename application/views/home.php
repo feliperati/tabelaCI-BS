@@ -1,12 +1,13 @@
-
+<div class="row">
+				
+    <div class="col-3 col-lg-3 col-md-3"></div>
+    <div class="col-6 col-lg-6 col-md-6">
+    
 <h1 class="jumbotrom_heading"> Projeto DUKA </h1>
-   
-<p> Formulários </p>
-<a class="btn btn-primary" href ="<?php echo base_url();?>Alunos">Alunos</a>
-<p></p>
-<a class="btn btn-primary" href ="<?php echo base_url();?>Professor">Professores</a>
-<p></p>
-<a class="btn btn-primary" href ="<?php echo base_url();?>usuario">Usuario</a>
-<a class="btn btn-primary" href="<?php echo base_url(); ?>login/sair">Sair</a>
+
+<h2 class="jumbotrom_heading"> BEM-VINDO </h2></div>
+
+
+
 
       
